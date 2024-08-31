@@ -1,1 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Righteous&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.brand{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 60px;
+}
+
+:root{
+    --font-family:"Encode Sans Expanded", sans-serif;
+    --main-color:rgb(22, 192, 22);
+    --bg-color:rgba(169, 169, 169, 0.949);
+}
+
+
+a{
+    text-decoration: none;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+body{
+    font-family: var(--font-family);
+}
+
+.product:hover{
+    border-radius: 5px;
+    border:1px solid var(--main-color);
+    box-shadow: 0 0 10px #11bd1168;
+
+}
+
+.product:hover button{
+    transform: translateY(0%);
+    opacity: 1;
+}
+.product button{
+    transform: translateY(100%);
+    opacity:0;
+    transition: all 1s;
+}
+.product{
+    transition: all 0.5;
+}
+
+.productdetails{
+    color:grey;
+}
+
+.products{
+    background-color:rgb(194, 194, 194);
+}
+.icon{
+    color:yellow;
+}
+
+.maincolor{
+    color:var(--main-color)
+}
+
+.main{
+    background-color: var(--main-color);
+}
+
+.bg-footer{
+    background-color: var(--bg-color);
+}
+
+.bordercolor{
+    border-color: var(--main-color);
+}

@@ -1,0 +1,51 @@
+@if(isloading){
+    <div class="loadingscreen  vh-100 d-flex justify-content-center align-items-center">
+        <span><i class="fa fa-spin fa-spinner maincolor fa-2xl"></i></span>
+    </div>
+}
+
+@if(errmsg){
+      <div class="alert alert-danger m-0 p-0">
+             <p class="p-1 m-0">{{errmsg}}</p>
+      </div>
+}
+
+
+
+
+@else{
+   
+       
+  
+  
+    <div class="container  my-3">
+       
+                <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-medium my-2">Shop Cart:</h2>
+                <button (click)="clearusercart()" class=" cursor-pointer border-0 main p-2 rounded-2  mt-3 text-light">Remove All</button>
+                </div>
+                <span class="maincolor fw-bold mb-5">Total Cart price: {{cartList.totalCartPrice |currency:'EUR'}}</span>
+        
+       @for(product of cartList.products;track $index){
+        <div class="row products border-bottom border-light align-items-center">
+            <div class="col-md-2 p-3">
+                <img [src]="product.product.imageCover" [alt]="product.product.title" class="w-100 rounded-2">
+            </div>
+            <div class="col-md-8 p-3">
+                <h2 class="fs-4 fw-medium">{{product.product.title}}</h2>
+                <p class="maincolor fs-6">price:{{product.price|currency:'EUR'}}</p>
+                <span (click)="removespecificitem(product.product._id)" class="cursor-pointer"><i class="fa fa-trash maincolor"></i> Remove</span>
+            </div>
+            <div class="col-md-2 p-3 ">
+                <button (click)="updatecart(product.product._id,product.count=product.count+1)" class="border text-light border-1 bg-success border-success p-2 rounded-1">+ </button>
+                <span> {{  product.count  }}</span>
+                <button (click)="updatecart(product.product._id,product.count=product.count-1)" class="border border-1 text-light bg-danger border-success p-2 rounded-1"> -</button>
+            </div>
+        </div>
+    }
+    <button  [routerLink]="['/Shoppingcartcash',cartList._id]"   class="btn btn-success rounded-3 d-block text-center mx-auto btn-lg me-5">Order</button>
+    
+   
+   </div>
+
+}

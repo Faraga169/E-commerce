@@ -1,0 +1,57 @@
+@if(isloading){
+    <div class="loadingscreen  vh-100 d-flex justify-content-center align-items-center">
+        <span><i class="fa fa-spin fa-spinner maincolor fa-2xl"></i></span>
+    </div>
+}
+
+
+
+
+@else{
+    <div class="container my-2">
+        <div class="row d-flex align-items-center">
+                <div class="col-md-3 p-3">
+                    
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide>
+        <img class="w-100" [src]=" productdetailslist.images[0]" [alt]="productdetailslist.description">
+    </ng-template>  
+    <ng-template carouselSlide> 
+         <img class="w-100" [src]=" productdetailslist.images[1]" [alt]="productdetailslist.description">
+    </ng-template>  
+    <ng-template carouselSlide>
+        <img class="w-100" [src]=" productdetailslist.images[2]" [alt]="productdetailslist.description">
+    </ng-template>  
+    <ng-template carouselSlide>
+        <img class="w-100" [src]=" productdetailslist.images[3]" [alt]="productdetailslist.description">
+    </ng-template>  
+  </owl-carousel-o>
+  
+                  
+                </div>
+                <div class="col-md-9 p-3">
+                    <h2 class="fs-2 fw-medium">{{productdetailslist.title}}</h2>
+                    <p class="my-3 fs-5 productdetails">{{productdetailslist.description}}</p>
+                    <span class="maincolor fs-6 fw-light">{{productdetailslist.category.name}}</span>
+                    <div class="d-flex justify-content-between my-2">
+                        <span>{{productdetailslist.price}}EGP</span>
+                        <span><i class="fa fa-star icon"></i>{{productdetailslist.ratingsAverage}}</span>
+                    </div>
+                    
+                        <button (click)="getproduct_idtoaddtocart(productdetailslist._id)" class="main px-3 py-1 my-3 w-100 text-light border-0 rounded-2 d-block mx-auto">
+                            @if(isloadingbtn){
+                                <span><i class="fa fa-spin fa-spinner text-light d-block mx-auto  mt-1  fa-1x"></i></span>
+                              }
+                              
+                                
+                               @else{
+                                <span>Add to cart</span>
+                               }
+                        </button>
+                    
+                </div>
+            
+        </div>
+    </div>
+}
+

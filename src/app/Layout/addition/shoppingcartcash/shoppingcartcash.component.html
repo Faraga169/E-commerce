@@ -1,0 +1,81 @@
+
+
+
+
+
+    <div class="w-75 mx-auto my-3 maincolor "> 
+        @if(errormessage){
+        <div class="alert alert-danger p-0 m-0">
+            <p class="m-0 p-1">{{errormessage}}</p>
+    </div>
+    }
+
+        <h2 class="text-center righteous-regular" >Payment Cash</h2>
+        <form action="" [formGroup]="shoppingcartform" >
+            <div class="form-floating mb-3">
+                <input formControlName="details" type="text" class="form-control border-0 border-bottom border-black rounded-0 " >
+                <label for="productName">Address:</label>
+              @if(shoppingcartform.get('details')?.errors && shoppingcartform.get('details')?.touched){
+                @if(shoppingcartform.get('details')?.errors?.['required']){
+                    <div class="alert alert-danger m-0 p-0">  
+                         <p class="p-1 m-0">Address is required</p>
+                    </div>
+                }
+                @else if(shoppingcartform.get('details')?.errors?.['pattern']){
+                    <div class="alert alert-danger m-0 p-0">  
+                         <p class="p-1 m-0">The address must start with a house number, followed by a space, and then may include letters, numbers, spaces, commas, hyphens, apostrophes, and periods. The pattern is flexible enough to accommodate various address formats, including street names, apartment numbers, and abbreviations.
+    
+                         </p>
+                    </div>
+                }
+              }
+              </div>
+            
+            <div class="form-floating mb-3">
+                <input formControlName="phone"  type="text" class="form-control border-0 border-bottom border-black rounded-0 ">
+                <label for="productName">Phone:</label>
+                @if(shoppingcartform.get('phone')?.errors && shoppingcartform.get('phone')?.touched){
+                    @if(shoppingcartform.get('phone')?.errors?.['required']){
+                        <div class="alert alert-danger m-0 p-0">  
+                             <p class="p-1 m-0">phone is required</p>
+                        </div>
+                    }
+                    @else if(shoppingcartform.get('phone')?.errors?.['pattern']){
+                        <div class="alert alert-danger m-0 p-0">  
+                             <p class="p-1 m-0">Address must start with 011 or 012 or 015 or 010 and contains 11 digit
+        
+                             </p>
+                        </div>
+                    }
+                  }
+              </div>
+            <div class="form-floating mb-3">
+                <input formControlName="city"  type="text" class="form-control border-0 border-bottom border-black rounded-0 "  >
+                <label for="productName">City:</label>
+    
+                @if(shoppingcartform.get('city')?.errors && shoppingcartform.get('city')?.touched){
+                    @if(shoppingcartform.get('city')?.errors?.['required']){
+                        <div class="alert alert-danger m-0 p-0">  
+                             <p class="p-1 m-0">city is required</p>
+                        </div>
+                    }
+                    @else if(shoppingcartform.get('city')?.errors?.['pattern']){
+                        <div class="alert alert-danger m-0 p-0">  
+                             <p class="p-1 m-0">The city must consist only of uppercase or lowercase letters, spaces, hyphens, or apostrophes. It can be any length as long as it contains at least one valid character. No digits, special symbols (other than hyphens and apostrophes), or other characters are allowed.
+        
+                             </p>
+                        </div>
+                    }
+                  }
+              </div>
+    
+              <div class="d-flex justify-content-between ">
+                <button (click)="checkshoppingcartform()" [disabled]="shoppingcartform.invalid"   class="btn btn-success rounded-3 btn-lg me-5">Visa</button>
+                <button (click)="checkshoppingcartformcash()" [disabled]="shoppingcartform.invalid"    class="btn btn-danger rounded-3 btn-lg">Cash</button>
+        </div>
+        </form>
+        </div>
+
+
+    
+        

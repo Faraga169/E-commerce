@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <div class="container">
+      <a class="navbar-brand" >
+        <img src="assets/image/images/freshcart-logo.svg" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+       @if(islogin==true){
+        <div class="navbar-nav">
+          <a class="nav-item">
+            <a class="nav-link px-2" routerLink="home" routerLinkActive="main text-light rounded-pill" >{{'navbar.Home'|translate}}</a>
+          </a>
+          <a class="nav-item">
+            <a class="nav-link px-2" routerLink="products" routerLinkActive="main text-light rounded-pill" >{{'navbar.products'|translate}}</a>
+          </a>
+          <a class="nav-item">
+            <a class="nav-link  px-2" routerLink="brands" routerLinkActive="main text-light rounded-pill">{{'navbar.brands'|translate}}</a>
+          </a>
+          <a class="nav-item">
+            <a class="nav-link  px-2" routerLink="categories" routerLinkActive="main text-light rounded-pill">{{'navbar.Categories'|translate}}</a>
+          </a>
+          <a class="nav-item">
+            <a class="nav-link  px-2" routerLink="cart" routerLinkActive="main text-light rounded-pill">{{'navbar.Cart'|translate}}</a>
+          </a>
+          <a class="nav-item">
+            <a class="nav-link  px-2" routerLink="wishlist" routerLinkActive="main text-light rounded-pill">{{'navbar.WishList'|translate}}</a>
+          </a>
+        </div>
+       }
+      
+        <div class="icons d-flex gap-3 align-item-center ms-auto mt-3 ">
+          @if(islogin==true){
+            <div class="cart">
+              <a class="" ><i class="cursor-pointer  fa-solid fa-cart-shopping maincolor fa-xl "></i></a>
+              <span class="rounded-circle  main cartitem">{{this.numberitem}}</span>
+             </div>
+            <div class="wish">
+              <a class="" ><i class=" cursor-pointer fa-solid fa-heart text-danger fa-xl"></i></a>
+              <span class="rounded-circle   wishitem">{{this.numberitemwishlist}}</span>
+             </div>
+          }
+            <span><i   class=" cursor-pointer fa-brands fa-facebook"></i></span>
+            <span><i   class=" cursor-pointer fa-brands fa-youtube"></i></span>
+            <span><i   class="cursor-pointer fa-brands fa-twitter"></i></span>
+            <span><i   class="cursor-pointer fa-brands fa-instagram"></i></span>
+            <span><i   class="cursor-pointer fa-brands fa-linkedin"></i></span>
+            @if(islogin==false){
+              <a class="nav-link "  routerLink="login" routerLinkActive="main text-light rounded-pill">{{'navbar.Login'|translate}}</a>
+              <a class="nav-link "  routerLink="register" routerLinkActive="main text-light rounded-pill">{{'navbar.register'|translate}}</a>
+             
+            }
+           @else{
+            <!-- <a class="nav-link cursor-pointer" routerLink="setting"  routerLinkActive="main text-light rounded-pill">{{'navbar.setting'|translate}}</a> -->
+            <a class="nav-link cursor-pointer" (click)="getlang('English')"   routerLinkActive="main text-light rounded-pill">{{'navbar.English'|translate}}</a>
+            <a class="nav-link cursor-pointer" (click)="getlang('Arabic')"   routerLinkActive="main text-light rounded-pill">{{'navbar.Arabic'|translate}}</a>
+            <a (click)="_authservice.logout()" class="nav-link  cursor-pointer">{{'navbar.Logout'|translate}}</a>
+           }
+           
+          </div>
+      </div>
+
+      
+    </div>
+  </nav>

@@ -1,0 +1,126 @@
+<div class="register mx-auto w-75 mt-3 p-3">
+    <h2>Register Now:</h2>
+    <form action="" [formGroup]="registerform" (ngSubmit)="submitform()">
+        @if(errMsg){
+            <div class="alert alert-danger m-0 p-0">
+             
+                <p class="p-1 m-0">{{errMsg}}</p>
+              
+        </div>
+        }
+        
+        <div class="form">
+            <label>name:</label>
+            <input type="text" formControlName="name" class="form-control">
+            @if(registerform.get('name')?.errors && registerform.get('name')?.touched){
+                @if(registerform.get('name')?.errors?.['required']){
+                    <div class="alert alert-danger p-0 m-0">
+                        <p class="p-1 m-0">name is required</p>
+                    </div>
+                }
+                @else if(registerform.get('name')?.errors?.['minlength']){
+                    <div class="alert alert-danger p-0 m-0">
+                        <p class="p-1 m-0">name min length is 3</p>
+                    
+                    </div>
+
+                }
+
+                @else if(registerform.get('name')?.errors?.['maxlength']){
+                    <div class="alert alert-danger p-0 m-0">
+                        <p class="p-1 m-0">name max length is 8</p>
+                    
+                    </div>
+
+                }
+                
+            }
+
+           
+            <label>email:</label>
+            <input type="email"formControlName="email"  class="form-control">
+            @if(registerform.get('email')?.errors && registerform.get('email')?.touched){
+            @if(registerform.get('email')?.errors?.['required']){
+                <div class="alert alert-danger m-0 p-0">
+                    <p class="p-1 m-0">email is required</p>
+                
+               </div>
+            }
+
+            @else if(registerform.get('email')?.errors?.['email']){
+                <div class="alert alert-danger p-0 m-0">
+                    <p class="p-1 m-0">email shoud be end with gmail.com</p>
+                
+                </div>
+
+            }
+        }
+            <label>password:</label>
+            <input type="text"formControlName="password"  class="form-control">
+            @if(registerform.get('password')?.errors && registerform.get('password')?.touched){
+                @if(registerform.get('password')?.errors?.['required']){
+                    <div class="alert alert-danger m-0 p-0">
+                        <p class="p-1 m-0">password is required</p>
+                    
+                   </div>
+                }
+    
+                @else if(registerform.get('password')?.errors?.['pattern']){
+                    <div class="alert alert-danger p-0 m-0">
+                        <p class="p-1 m-0">password shoud be contain with alphanumeric at least 8 digits</p>
+                    
+                    </div>
+    
+                }
+            }
+            <label>repassword:</label>
+            <input type="text"formControlName="rePassword"  class="form-control">
+            @if(registerform.get('rePassword')?.errors && registerform.get(' rePassword')?.touched){
+                @if(registerform.get('rePassword')?.errors?.['required']){
+                    <div class="alert alert-danger m-0 p-0">
+                        <p class="p-1 m-0">repassword is required</p>
+                    
+                   </div>
+                }
+                @else if(registerform.get('rePassword')?.errors?.['mismatch']){
+                    <div class="alert alert-danger p-0 m-0">
+                        <p class="p-1 m-0">repassword must be the same of password</p>
+                    
+                    </div>
+    
+                }
+            }
+            <label>phone:</label>
+            <input type="tel" formControlName="phone" class="form-control">
+            @if(registerform.get('phone')?.errors && registerform.get('phone')?.touched){
+                @if(registerform.get('phone')?.errors?.['required']){
+                    <div class="alert alert-danger m-0 p-0">
+                        <p class="p-1 m-0">phone is required</p>
+                    
+                   </div>
+                }
+    
+                @else if(registerform.get('phone')?.errors?.['pattern']){
+                    <div class="alert alert-danger p-0 m-0">
+                        <p class="p-1 m-0">phone must strat with 012 or 011 or 010 or 015 shoud be 11 digits</p>
+                    
+                    </div>
+    
+                }
+            }
+            <div class="d-flex justify-content-end  mt-2">
+                <button [disabled]="registerform.invalid" class="btn main">
+                    @if(isloading){
+                        <span><i class="fa fa-spin fa-spinner"></i></span>
+                    }
+
+                    @else{
+                        <span>Register</span>
+                    }
+                    
+                    
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

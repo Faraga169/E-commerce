@@ -1,0 +1,31 @@
+
+  <h2 class="text-center text-light main mt-3">All orders</h2>
+<div class="table-responsive mx-auto w-100 text-center">
+    <table class="table table-striped  align-middle">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">TotalPrice</th>
+            <th scope="col">PaymentMethod</th>
+            <th scope="col">Is Delvired</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for(item of orderlist;track $index){
+                     <tr class="text-center">
+                    <th scope="row">{{$index+1}}</th>
+                    <td class="bg-body-secondary">{{item._id}}</td>
+                    <td>{{item.createdAt|date:'short'}}</td>
+                    <td class="bg-body-secondary" >{{item.totalOrderPrice| currency:'EUR'}}</td>
+                    <td >{{item.paymentMethodType}}</td>
+                    <td class="bg-body-secondary">{{item.isDelivered}}</td>
+                  </tr>
+            }
+          
+        </tbody>
+      </table>
+</div>
+
+  

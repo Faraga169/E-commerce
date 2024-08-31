@@ -1,0 +1,30 @@
+@if(isloading){
+    <div class="loadingscreen  vh-100 d-flex justify-content-center align-items-center">
+        <span><i class="fa fa-spin fa-spinner maincolor fa-2xl"></i></span>
+    </div>
+}
+
+@else{
+    <div class="container mt-5 p-3">
+        <h2 class="brand text-center mb-3 main rounded-2 text-light">All subcategories</h2>
+        <div class="row">
+            @for(item of subcategorylist;track $index){
+             
+                    <div class="col-md-3 border border-2 border-dark-subtle rounded-2 ">
+                        <div class="item d-flex justify-content-center align-items-center p-5 flex-column cursor-pointer ">
+                            <h2 class="fs-2 mt-2 maincolor brand text-center">{{item.name}}</h2>
+                            <p class="fs-4 maincolor">Date:{{item.createdAt|date:'short'}}</p>
+                        </div>
+                       </div>
+               
+                
+             
+            }
+            
+            
+        </div>
+    </div>
+}
+
+
+

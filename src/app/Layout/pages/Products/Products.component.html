@@ -1,0 +1,82 @@
+
+
+<app-homeslider></app-homeslider>
+<div class="container">
+    <h2 class="my-3 fs-3 fw-medium">Shop popular categories</h2>
+</div>
+
+
+<app-categoryslider></app-categoryslider>
+
+
+
+
+@if(isloading){
+    <div class="loadingscreen  vh-100 d-flex justify-content-center align-items-center">
+        <span><i class="fa fa-spin fa-spinner maincolor fa-2xl"></i></span>
+    </div>
+}
+
+@else{
+            <div class="container">
+                <div class="search my-2 ">
+                    <i class="fa fa-search"></i>
+                    <input [(ngModel)]="userword" type="text" class="form-control" placeholder="Search by title">
+                    <button class="btn btn-primary">Search</button>
+                  </div>
+            </div>
+           
+            
+          
+    <div class="container">
+        <div class="row">
+
+            @for(product of productlist |search:userword;track $index){
+                
+                <div class="col-lg-2 col-md-4 p-3 cursor-pointer">
+                    <div>
+                        <span (click)="tooglewishlist(product._id)"   class="cursor-pointer">
+                            <i id="{{product._id}}"  [ngClass]="{'text-danger':wishlistid.includes(product._id),'text-dark': !wishlistid.includes(product._id)}"  class="fa-solid fa-heart fa-2x"></i></span>
+                       </div>
+                        <div class="items product p-2 h-100"  >
+                        <div [routerLink]="['/productdetails', product._id]">
+                            <img [src]="product.imageCover" class="w-100" alt="">
+                        <span class="maincolor fs-6 fw-light">{{product.category.name}}</span>
+                        <h3 class="my-3 fs-5 fw-medium">{{product.title.split(' ').splice(0,2).join(' ')|onsale}}</h3>
+                        <div class="d-flex justify-content-between">
+                            <span>{{product.price | currency :'EUR'}}EUR</span>
+                            <span>{{product.ratingsAverage}}<i class="fa fa-star icon"></i></span>
+                          
+                        </div>
+                        <p class="my-2">{{date |date:'fullDate'}}</p>
+                        </div>
+        
+                        
+                       
+                        <button (click)="getproduct_idtoaddtocart(product._id)" class="main w-100 text-light border-0 rounded-2  p-2">
+                          @if(isloadingbtn){
+                            <span><i class="fa fa-spin fa-spinner maincolor d-block mx-auto text-light mt-3  fa-1x"></i></span>
+                          }
+                          
+                            
+                           @else{
+                            <span>Add to cart</span>
+                           }
+                           
+                           
+                            
+                            
+                           
+                        </button>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    </div>
+    
+}
+
+
+
+
