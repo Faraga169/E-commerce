@@ -48,8 +48,8 @@ constructor(private _AuthService:AuthService,private _Router:Router){
   
       error:(err)=>{
         console.log(err);
-        // this.isloading=false;
-        // this.errMsg=err.error.message
+        this.isloading=false;
+        this.errMsg="Account already exist"
       },
   
       complete:()=>{

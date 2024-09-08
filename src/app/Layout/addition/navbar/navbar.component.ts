@@ -1,5 +1,5 @@
 import { AuthService } from './../../../shared/services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../../../app/shared/services/cart/cart.service';
 import { WishlistService } from '../../../../app/shared/services/wishlist/wishlist.service';
@@ -19,17 +19,8 @@ export class NavbarComponent implements OnInit {
   numberitem!:number;
   numberitemwishlist!:number;
   constructor(public _MytranslateService:MytranslateService,public _authservice:AuthService,private _cartservice:CartService,private _wishlistservice:WishlistService){
-
-  }
-
-ngOnInit(){
- 
-  this.getnumberofcart()
-  this.getnumberofwishlist()
-  this._authservice.userData.subscribe({
-    next:(res)=>{
-      console.log(res);
-      if(this._authservice.userData.getValue()!=null){
+    effect(()=>{
+      if(this._authservice.userData()!=null){
         this.islogin=true;
         console.log(this.islogin)
       }
@@ -37,17 +28,15 @@ ngOnInit(){
         this.islogin=false;
         console.log(this.islogin)
       }
+    })
+  }
 
-
-    },
-    error:(err)=>{
-      console.log(err);
-    },
-    complete:()=>{
-
-    }
-  })
-
+ngOnInit(){
+ 
+  this.getnumberofcart()
+  this.getnumberofwishlist()
+  
+  
  }
 
  getnumberofcart(){

@@ -62,16 +62,13 @@ loginsubmit(){
 
     error:(err)=>{
            this.isloading=false;
-           this.errmsg=err.message
+           this.errmsg="Incorrect email or password"
            console.log(err);
     }
   })
 }
   // console.log(this.loginform.get('email')?.value)
-  else {
-    this.isloading = false;
-    this.errmsg = "Please fill in all required fields correctly.";
-  }
+ 
 }
 
 

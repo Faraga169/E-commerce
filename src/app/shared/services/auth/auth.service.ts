@@ -1,6 +1,6 @@
 import { Enviroment } from './../../../base/Enviroment';
 import { HttpClient } from '@angular/common/http';
-import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { Isignup } from '../../../isignup';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Signin } from '../../../signin';
@@ -15,7 +15,7 @@ import { Iresetpassword } from '../../../iresetpassword';
 })
 export class AuthService {
 // use it to monitor userData
-   userData:BehaviorSubject<any>=new BehaviorSubject(null);
+   userData:WritableSignal<any>=signal<any>(null);
   
 
  constructor(private _httpclient:HttpClient,private _Router:Router,@Inject(PLATFORM_ID)private x:object){
@@ -25,7 +25,7 @@ export class AuthService {
         // this._Router.navigate([localStorage.getItem('currentpage')]);
        }
       //  else{
-      //   this.userData = new BehaviorSubject(null)
+      //   this.userData.set(null);
       // }
       
        
@@ -44,17 +44,17 @@ postsignin(data:Signin):Observable<any>{
   DecodeuserData(){
     // Decode
     // store Decode in userData
-    // this.userData = new BehaviorSubject(null)
+    // this.userData.set(null);
     const token = JSON.stringify(localStorage.getItem('usertoken'));
     const decoded = jwtDecode(token);
-    this.userData.next(decoded);
-    console.log("Data",this.userData.getValue());
+    this.userData.set(decoded);
+    console.log("Data",this.userData());
   }
 
 
   logout(){
     localStorage.removeItem('usertoken');
-    this.userData.next(null);
+    this.userData.set(null);
     this._Router.navigate(['/login'])
 
   }

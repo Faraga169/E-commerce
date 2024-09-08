@@ -16,7 +16,7 @@ export class AllordersComponent implements OnInit {
 
   constructor(private _orderdervice:OrderService,private _authservice:AuthService){}
     orderlist!:userorderres[];
-   userid=this._authservice.userData.value['id'];
+   userid=this._authservice.userData()['id'];
    createdat:any;
   ngOnInit(): void {
     this.getuserorders()

@@ -5,7 +5,7 @@ import { AuthService } from './shared/services/auth/auth.service';
 export const logoutGuard: CanActivateFn = (route, state) => {
   let _Authservice:AuthService=inject(AuthService);
   let _Router:Router=inject(Router);
-  if(_Authservice.userData.getValue()!=null){
+  if(_Authservice.userData()!=null){
     _Router.navigate(['/home'])
          return false;
   }

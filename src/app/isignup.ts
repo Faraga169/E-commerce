@@ -5,3 +5,7 @@ export interface Isignup {
     rePassword:string,
     phone:number,
 }
+
+
+
+
